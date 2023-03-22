@@ -8,6 +8,8 @@ import static org.mockito.Mockito.when;
 
 import com.company.signup.domain.model.statistic.BirthYearAvgBmi;
 import com.company.signup.domain.model.statistic.BirthYearUsersTotal;
+import com.company.signup.domain.model.user.BirthDate;
+import com.company.signup.domain.model.user.BodyMeasurements;
 import com.company.signup.domain.model.user.User;
 import com.company.signup.domain.repository.statisctic.GetBirthYearAvgBmiByYearRepository;
 import com.company.signup.domain.repository.statisctic.GetBirthYearUsersTotalByYearRepository;
@@ -20,9 +22,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-@ExtendWith(SpringExtension.class)
+@ExtendWith(MockitoExtension.class)
 public class UpdateUserTest {
 
   @Mock
@@ -47,7 +49,8 @@ public class UpdateUserTest {
   public void given_user_then_update_save_birth_year_avg_bmi() {
     var year = LocalDate.now().getYear();
 
-    var user = User.create(1L, "pepelucho", "123456", LocalDate.now(), 1.88F, 78F);
+    var user = User.create(1L, "pepelucho", "123456", BirthDate.create(LocalDate.now()),
+        BodyMeasurements.create(1.88, 78.0));
 
     when(getUserByIdRepository.execute(1L)).thenReturn(Optional.of(user));
     when(updateUserRepository.execute(user)).thenReturn(user);
@@ -65,7 +68,8 @@ public class UpdateUserTest {
   public void given_not_existing_user_then_not_update_save_birth_year_avg_bmi() {
     when(updateUserRepository.execute(any())).thenReturn(null);
 
-    updateUser.execute(User.create(1L, "pepelucho", "123456", LocalDate.now(), 1.88F, 78F));
+    updateUser.execute(User.create(1L, "pepelucho", "123456", BirthDate.create(LocalDate.now()),
+        BodyMeasurements.create(1.88, 78.0)));
 
     verifyNoInteractions(updateBirthYearAvgBmiRepository);
   }

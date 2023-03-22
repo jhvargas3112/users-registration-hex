@@ -1,12 +1,14 @@
 package com.company.signup.cli;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import com.company.signup.domain.model.user.BirthDate;
+import com.company.signup.domain.model.user.BodyMeasurements;
 import com.company.signup.domain.model.user.User;
 import com.company.signup.domain.usecase.statistic.GetPaginatedAndOrderedBirthYearsAvgBmisUseCase;
 import com.company.signup.domain.usecase.user.AddUserUseCase;
 import com.company.signup.domain.usecase.user.GetPaginatedAndOrderedUsersUseCase;
 import com.company.signup.domain.usecase.user.UpdateUserUseCase;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import java.time.LocalDate;
 import java.util.Scanner;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,8 +61,8 @@ public class CLI {
       int year;
       int month;
       int day;
-      float height;
-      float weight;
+      double height;
+      double weight;
 
       ObjectMapper mapper = new ObjectMapper();
       mapper.findAndRegisterModules();
@@ -81,12 +83,13 @@ public class CLI {
             System.out.println("Day: ");
             day = info.nextInt();
             System.out.println("Height: ");
-            height = info.nextFloat();
+            height = info.nextDouble();
             System.out.println("Weight: ");
-            weight = info.nextFloat();
+            weight = info.nextDouble();
             var createdUser = addUserUseCase.execute(
-                User.create(null, userName, password, LocalDate.of(year, month, day), height,
-                    weight));
+                User.create(null, userName, password,
+                    BirthDate.create(LocalDate.of(year, month, day)),
+                    BodyMeasurements.create(height, weight)));
             System.out.println(
                 "User successfully created -> " + mapper.writeValueAsString(createdUser));
           }
@@ -94,11 +97,11 @@ public class CLI {
             System.out.println("Id: ");
             var id = info.nextLong();
             System.out.println("Height: ");
-            var newHeight = info.nextFloat();
+            var newHeight = info.nextDouble();
             System.out.println("Weight: ");
-            var newWeight = info.nextFloat();
+            var newWeight = info.nextDouble();
             var updatedUser = updateUserUseCase.execute(
-                User.create(id, null, null, null, newHeight, newWeight));
+                User.create(id, null, null, null, BodyMeasurements.create(newHeight, newWeight)));
             System.out.println(
                 "User successfully created -> " + mapper.writeValueAsString(updatedUser));
           }

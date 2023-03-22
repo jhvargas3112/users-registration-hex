@@ -6,6 +6,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.company.signup.domain.ResultsPage;
+import com.company.signup.domain.model.user.BirthDate;
+import com.company.signup.domain.model.user.BodyMeasurements;
 import com.company.signup.domain.model.user.User;
 import com.company.signup.domain.repository.user.GetPaginatedAndOrderedUsersRepository;
 import java.time.LocalDate;
@@ -31,8 +33,10 @@ public class GetPaginatedAndOrderedUsersTest {
 
   @Test
   public void given_size_and_page_and_sortby_params_then_return_users_page() {
-    var user1 = User.create(1L, "pepelucho1", "123456", LocalDate.now(), 1.88F, 78F);
-    var user2 = User.create(2L, "pepelucho2", "12345678", LocalDate.now(), 1.90F, 87F);
+    var user1 = User.create(1L, "pepelucho1", "123456", BirthDate.create(LocalDate.now()),
+        BodyMeasurements.create(1.88, 78.0));
+    var user2 = User.create(2L, "pepelucho2", "12345678", BirthDate.create(LocalDate.now()),
+        BodyMeasurements.create(1.90, 87.0));
 
     var sortBy = "birthDate";
 

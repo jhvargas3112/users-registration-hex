@@ -1,0 +1,6 @@
+include 'code'
+include 'code:usersregistration-domain'
+include 'code:usersregistration-application'
+include 'code:usersregistration-infrastructure'
+include 'code:usersregistration-boot'
+include 'code:usersregistration-api:rest:api-rest-server'

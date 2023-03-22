@@ -6,6 +6,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.company.signup.domain.model.user.BirthDate;
+import com.company.signup.domain.model.user.BodyMeasurements;
 import com.company.signup.domain.model.user.User;
 import com.company.signup.domain.repository.user.AddUserRepository;
 import com.company.signup.infrastructure.client.jpa.UserJpaRepository;
@@ -32,7 +34,8 @@ public class AddUserDBRepositoryTest {
 
   @Test
   public void given_user_then_user_saved() {
-    var user = User.create(any(), "pepelucho", "123456", LocalDate.now(), 1.88F, 78F);
+    var user = User.create(any(), "pepelucho", "123456", BirthDate.create(LocalDate.now()),
+        BodyMeasurements.create(1.88, 78.0));
     var entityUser = new RepositoryUserMapperImpl().to(user);
 
     when(repositoryUserMapper.to(user)).thenReturn(entityUser);

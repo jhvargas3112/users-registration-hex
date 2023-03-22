@@ -27,7 +27,7 @@ public class UpdateUserDBRepository implements UpdateUserRepository {
     return userToUpdate.map((u -> {
       u.setHeight(user.getHeight());
       u.setWeight(user.getWeight());
-      
+
       userJpaRepository.save(u);
 
       return repositoryUserMapper.to(u);

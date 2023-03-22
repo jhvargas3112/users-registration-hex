@@ -1,32 +1,40 @@
 package com.company.signup.domain.model.user;
 
-import java.time.LocalDate;
-import lombok.AllArgsConstructor;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import lombok.Value;
 
 @Value
-@AllArgsConstructor
 public class User {
 
   Long id;
 
+  @NotBlank
+  @Size(min = 8)
   String userName;
 
+  @NotBlank
   String password;
 
-  LocalDate birthDate;
+  BirthDate birthDate;
 
-  Float height;
-
-  Float weight;
+  BodyMeasurements bodyMeasurements;
 
   public static User create(final Long id, final String userName, final String password,
-      final LocalDate birthDate, final Float height, final Float weight) {
-    return new User(id, userName, password, birthDate, height, weight);
+      final BirthDate birthDate, final BodyMeasurements bodyMeasurements) {
+    return new User(id, userName, password, birthDate, bodyMeasurements);
   }
 
   public Double calculateBmiValue() {
-    return weight / Math.pow(height, 2.0);
+    return this.bodyMeasurements.calculateBmi();
+  }
+
+  public Double getHeight() {
+    return this.getBodyMeasurements().getHeight();
+  }
+
+  public Double getWeight() {
+    return this.getBodyMeasurements().getWeight();
   }
 
 }

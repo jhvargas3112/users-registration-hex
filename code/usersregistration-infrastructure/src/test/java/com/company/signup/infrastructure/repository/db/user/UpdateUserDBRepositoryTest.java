@@ -6,6 +6,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.company.signup.domain.model.user.BirthDate;
+import com.company.signup.domain.model.user.BodyMeasurements;
 import com.company.signup.domain.model.user.User;
 import com.company.signup.domain.repository.user.UpdateUserRepository;
 import com.company.signup.infrastructure.client.jpa.UserJpaRepository;
@@ -32,9 +34,10 @@ public class UpdateUserDBRepositoryTest {
 
   @Test
   public void given_existing_user_then_user_updated() {
-    var updatedUser = User.create(1L, "pepelucho", "123456", LocalDate.now(), 2.22F, 95.2F);
+    var updatedUser = User.create(1L, "pepelucho", "123456", BirthDate.create(LocalDate.now()),
+        BodyMeasurements.create(2.22, 95.2));
     var userToUpdate = new com.company.signup.infrastructure.repository.db.entity.User(1L,
-        "pepelucho", "123456", LocalDate.now(), 2.22F, 95.2F);
+        "pepelucho", "123456", LocalDate.now(), 2.22, 95.2);
 
     when(userJpaRepository.findById(1L)).thenReturn(Optional.of(userToUpdate));
     when(userJpaRepository.save(userToUpdate)).thenReturn(userToUpdate);
@@ -52,7 +55,8 @@ public class UpdateUserDBRepositoryTest {
     when(userJpaRepository.findById(1L)).thenReturn(Optional.empty());
 
     assertNull(updateUserRepository.execute(
-        User.create(1L, "pepelucho", "123456", LocalDate.now(), 2.22F, 95.2F)));
+        User.create(1L, "pepelucho", "123456", BirthDate.create(LocalDate.now()),
+            BodyMeasurements.create(2.22, 95.2))));
 
     verify(userJpaRepository, times(1)).findById(1L);
   }

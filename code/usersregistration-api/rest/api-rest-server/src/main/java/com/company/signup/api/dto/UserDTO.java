@@ -36,11 +36,11 @@ public class UserDTO {
   @NotNull
   @DecimalMin(value = "1.00")
   @DecimalMax(value = "2.30")
-  Float height;
+  Double height;
 
   @NotNull
   @Min(40)
   @Max(150)
-  Float weight;
+  Double weight;
 
 }

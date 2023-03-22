@@ -1,5 +1,7 @@
 package com.company.signup.usecase.statistic;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -43,7 +45,7 @@ public class GetPaginatedAndOrderedBirthYearsAvgBmisTest {
 
     var page = getPaginatedAndOrderedBirthYearsAvgBmis.execute(1, 2, sortBy);
 
-    assert page.getElements().size() == 2;
+    assertEquals(2, page.getElements().size());
     assert page.getTotalResults().equals(2L);
     assert page.getSize().equals(2);
     assert page.getCurrentPage().equals(1);

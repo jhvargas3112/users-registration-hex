@@ -15,6 +15,8 @@ import com.company.signup.api.dto.UserDTO;
 import com.company.signup.api.mapper.UserMapper;
 import com.company.signup.api.mapper.UserResultsPageMapper;
 import com.company.signup.domain.ResultsPage;
+import com.company.signup.domain.model.user.BirthDate;
+import com.company.signup.domain.model.user.BodyMeasurements;
 import com.company.signup.domain.model.user.User;
 import com.company.signup.domain.usecase.user.AddUserUseCase;
 import com.company.signup.domain.usecase.user.GetPaginatedAndOrderedUsersUseCase;
@@ -67,19 +69,22 @@ public class UserControllerTest {
     var birtDate = LocalDate.of(1988, 12, 31);
 
     List<User> users = new ArrayList<>();
-    users.add(new User(1L, "pepelucho1", "123456", birtDate, 1.87F, 82F));
-    users.add(new User(2L, "pepelucho2", "1234567", birtDate, 1.68F, 70F));
+    users.add(new User(1L, "pepelucho1", "123456", BirthDate.create(birtDate),
+        BodyMeasurements.create(1.87, 82.0)));
+    users.add(new User(2L, "pepelucho2", "1234567", BirthDate.create(birtDate),
+        BodyMeasurements.create(1.68, 70.0)));
     ResultsPage<User> resultsPage = new ResultsPage<>(users, 2L, 5, 0, 1);
 
     List<UserDTO> usersDTOs = new ArrayList<>();
-    usersDTOs.add(new UserDTO(1L, "pepelucho1", "123456", birtDate, 1.87F, 82F));
-    usersDTOs.add(new UserDTO(2L, "pepelucho2", "1234567", birtDate, 1.68F, 70F));
+    usersDTOs.add(new UserDTO(1L, "pepelucho1", "123456", birtDate, 1.87, 82.0));
+    usersDTOs.add(new UserDTO(2L, "pepelucho2", "1234567", birtDate, 1.68, 70.0));
     ResultsPageDTO<UserDTO> resultsPageDTO = new ResultsPageDTO<>(usersDTOs, 2L, 5, 0, 1);
 
     when(getPaginatedAndOrderedUsersUseCase.execute(0, 5, "birthDate")).thenReturn(resultsPage);
     when(userResultsPageMapper.to(resultsPage)).thenReturn(resultsPageDTO);
 
-    User user = User.create(null, "pepelucho", "123456", LocalDate.now(), 1.87F, 111F);
+    User user = User.create(null, "pepelucho", "123456", BirthDate.create(LocalDate.now()),
+        BodyMeasurements.create(1.87, 111.0));
 
     when(addUserUseCase.execute(any())).thenReturn(user);
   }

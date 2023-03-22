@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.9'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id 'io.freefair.lombok' version '6.6.3'
+}
+
+allprojects {
+    group = 'com.users'
+    version = '0.0.1-SNAPSHOT'
+    sourceCompatibility = '17'
+    
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'io.freefair.lombok'
+
+    springBoot {
+        mainClass = 'com.users.signup.UsersRegistrationApplication'
+    }
+    
+    repositories {
+        mavenCentral()
+    }
+    
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '3.0.4'
+        compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.26'
+        annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.26'
+        testCompileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.26'
+        testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.26'
+        compileOnly group: 'org.mapstruct', name: 'mapstruct', version: '1.5.3.Final'
+        testCompileOnly group: 'org.mapstruct', name: 'mapstruct', version: '1.5.3.Final'
+        testAnnotationProcessor group: 'org.mapstruct', name: 'mapstruct', version: '1.5.3.Final'
+        implementation group: 'org.mapstruct', name: 'mapstruct', version: '1.5.3.Final'
+        annotationProcessor group: 'org.mapstruct', name: 'mapstruct', version: '1.5.3.Final'
+        compileOnly group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.5.3.Final'
+        implementation group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.5.3.Final'
+        annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.5.3.Final'
+        implementation group: 'org.projectlombok', name: 'lombok-mapstruct-binding', version: '0.2.0'
+        testImplementation group: 'com.h2database', name: 'h2', version: '2.1.214'
+        implementation group: 'com.h2database', name: 'h2', version: '2.1.214'
+        implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
+        implementation 'org.apache.kafka:kafka-clients:3.4.0'
+    }
+
+    tasks.named('test') {
+        useJUnitPlatform()
+    }
+}

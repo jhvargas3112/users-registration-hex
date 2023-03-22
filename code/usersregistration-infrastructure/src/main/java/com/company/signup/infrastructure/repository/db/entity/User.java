@@ -27,8 +27,8 @@ public class User {
   
   private LocalDate birthDate;
   
-  private Float height;
+  private Double height;
 
-  private Float weight;
+  private Double weight;
 
 }

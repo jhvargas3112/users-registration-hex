@@ -34,9 +34,9 @@ public class GetUserByIdDBRepositoryTest {
   @Test
   public void given_user_id_then_return_user() {
     var userId = 1L;
-     
+
     var entityUser = new com.company.signup.infrastructure.repository.db.entity.User(any(),
-        "pepelucho", "123456", LocalDate.now(), 1.88F, 78F);
+        "pepelucho", "123456", LocalDate.now(), 1.88, 78.0);
 
     var user = new RepositoryUserMapperImpl().to(entityUser);
     when(userJpaRepository.findById(userId)).thenReturn(Optional.of(entityUser));
