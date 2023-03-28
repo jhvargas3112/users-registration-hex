@@ -1,5 +1,0 @@
-dependencies {
-    implementation project(":code:usersregistration-domain")
-    testImplementation 'junit:junit:4.13.1'
-    testImplementation project(path: ':code:usersregistration-boot')
-}

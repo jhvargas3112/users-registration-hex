@@ -1,6 +1,0 @@
-dependencies {
-    implementation project(":code:usersregistration-domain")
-    implementation project(":code:usersregistration-application")
-    implementation project(":code:usersregistration-infrastructure")
-    implementation project(":code:usersregistration-api:rest:api-rest-server")
-}

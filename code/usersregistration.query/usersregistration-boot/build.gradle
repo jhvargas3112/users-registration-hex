@@ -1,0 +1,6 @@
+dependencies {
+    implementation project(":code:usersregistration.query:usersregistration-domain")
+    implementation project(":code:usersregistration.query:usersregistration-application")
+    implementation project(":code:usersregistration.query:usersregistration-infrastructure")
+    implementation project(":code:usersregistration.query:usersregistration-api:rest:api-rest-server")
+}

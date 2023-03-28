@@ -1,0 +1,4 @@
+dependencies {
+    implementation project(":code:usersregistration.query:usersregistration-domain")
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+}

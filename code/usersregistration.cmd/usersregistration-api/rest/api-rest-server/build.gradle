@@ -1,0 +1,5 @@
+dependencies {
+    implementation project(":code:usersregistration.cmd:usersregistration-domain")
+    testImplementation 'junit:junit:4.13.1'
+    testImplementation project(path: ':code:usersregistration.cmd:usersregistration-boot')
+}
