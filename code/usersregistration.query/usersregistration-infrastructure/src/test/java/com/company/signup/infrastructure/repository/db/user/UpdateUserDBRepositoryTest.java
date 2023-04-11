@@ -14,6 +14,7 @@ import com.company.signup.infrastructure.client.jpa.UserJpaRepository;
 import com.company.signup.infrastructure.repository.db.mapper.RepositoryUserMapper;
 import java.time.LocalDate;
 import java.util.Optional;
+import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -34,31 +35,35 @@ public class UpdateUserDBRepositoryTest {
 
   @Test
   public void given_existing_user_then_user_updated() {
-    var updatedUser = User.create(1L, "pepelucho", "123456", BirthDate.create(LocalDate.now()),
+    var id = UUID.randomUUID().toString();
+
+    var updatedUser = User.create(id, "pepelucho", "123456", BirthDate.create(LocalDate.now()),
         BodyMeasurements.create(2.22, 95.2));
-    var userToUpdate = new com.company.signup.infrastructure.repository.db.entity.User(1L,
+    var userToUpdate = new com.company.signup.infrastructure.repository.db.entity.User(id,
         "pepelucho", "123456", LocalDate.now(), 2.22, 95.2);
 
-    when(userJpaRepository.findById(1L)).thenReturn(Optional.of(userToUpdate));
+    when(userJpaRepository.findById(id)).thenReturn(Optional.of(userToUpdate));
     when(userJpaRepository.save(userToUpdate)).thenReturn(userToUpdate);
     when(repositoryUserMapper.to(userToUpdate)).thenReturn(updatedUser);
 
     updateUserRepository.execute(updatedUser);
 
-    verify(userJpaRepository, times(1)).findById(1L);
+    verify(userJpaRepository, times(1)).findById(id);
     verify(userJpaRepository, times(1)).save(userToUpdate);
     verify(repositoryUserMapper, times(1)).to(userToUpdate);
   }
 
   @Test
   public void given_not_existing_user_then_user_not_updated() {
-    when(userJpaRepository.findById(1L)).thenReturn(Optional.empty());
+    var id = UUID.randomUUID().toString();
+
+    when(userJpaRepository.findById(id)).thenReturn(Optional.empty());
 
     assertNull(updateUserRepository.execute(
-        User.create(1L, "pepelucho", "123456", BirthDate.create(LocalDate.now()),
+        User.create(id, "pepelucho", "123456", BirthDate.create(LocalDate.now()),
             BodyMeasurements.create(2.22, 95.2))));
 
-    verify(userJpaRepository, times(1)).findById(1L);
+    verify(userJpaRepository, times(1)).findById(id);
   }
 
 }

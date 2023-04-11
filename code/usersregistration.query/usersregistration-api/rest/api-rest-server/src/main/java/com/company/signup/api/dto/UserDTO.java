@@ -1,6 +1,6 @@
 package com.company.signup.api.dto;
 
-import com.company.signup.api.validators.LegalAge;
+import com.users.resgistration.common.validators.LegalAge;
 import java.time.LocalDate;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
@@ -30,7 +30,7 @@ public class UserDTO {
 
   @NotNull
   @Past
-  @LegalAge(value = 18)
+  @LegalAge(18)
   LocalDate birthDate;
 
   @NotNull

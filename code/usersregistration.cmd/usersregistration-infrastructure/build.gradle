@@ -1,4 +1,8 @@
 dependencies {
     implementation project(":code:usersregistration.cmd:usersregistration-domain")
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation project(":cqrs-es:core") 
+    implementation project(':code:usersregistration.common')
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+    implementation 'org.springframework.kafka:spring-kafka'
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
 }

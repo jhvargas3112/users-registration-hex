@@ -12,6 +12,7 @@ import com.company.signup.domain.model.user.User;
 import com.company.signup.domain.repository.user.GetPaginatedAndOrderedUsersRepository;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -33,9 +34,12 @@ public class GetPaginatedAndOrderedUsersTest {
 
   @Test
   public void given_size_and_page_and_sortby_params_then_return_users_page() {
-    var user1 = User.create(1L, "pepelucho1", "123456", BirthDate.create(LocalDate.now()),
+    var id1 = UUID.randomUUID().toString();
+    var id2 = UUID.randomUUID().toString();
+    
+    var user1 = User.create(id1, "pepelucho1", "123456", BirthDate.create(LocalDate.now()),
         BodyMeasurements.create(1.88, 78.0));
-    var user2 = User.create(2L, "pepelucho2", "12345678", BirthDate.create(LocalDate.now()),
+    var user2 = User.create(id2, "pepelucho2", "12345678", BirthDate.create(LocalDate.now()),
         BodyMeasurements.create(1.90, 87.0));
 
     var sortBy = "birthDate";

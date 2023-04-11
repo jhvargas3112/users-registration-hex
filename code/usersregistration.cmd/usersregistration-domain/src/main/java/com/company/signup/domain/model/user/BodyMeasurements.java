@@ -24,8 +24,4 @@ public class BodyMeasurements {
     return new BodyMeasurements(height, weight);
   }
 
-  public Double calculateBmi() {
-    return weight / Math.pow(height, 2.0);
-  }
-
 }

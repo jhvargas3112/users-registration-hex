@@ -1,4 +1,10 @@
 dependencies {
     implementation project(":code:usersregistration.query:usersregistration-domain")
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation project(":cqrs-es:core")
+    implementation project(':code:usersregistration.common')
+    implementation group: 'org.springframework', name: 'spring-messaging', version: '6.0.7'
+    implementation group: 'com.mysql', name: 'mysql-connector-j', version: '8.0.32'
+    implementation 'org.springframework.kafka:spring-kafka'
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
 }

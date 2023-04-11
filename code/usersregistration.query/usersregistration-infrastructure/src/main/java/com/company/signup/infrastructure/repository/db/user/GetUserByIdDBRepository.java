@@ -21,7 +21,7 @@ public class GetUserByIdDBRepository implements GetUserByIdRepository {
   }
 
   @Override
-  public Optional<User> execute(Long id) {
+  public Optional<User> execute(String id) {
     return userJpaRepository.findById(id).map(repositoryUserMapper::to);
   }
 

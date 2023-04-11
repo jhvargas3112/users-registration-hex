@@ -1,3 +1,4 @@
 dependencies {
     implementation project(":code:usersregistration.cmd:usersregistration-domain")
+    implementation project(":cqrs-es:core")
 }

@@ -1,5 +1,8 @@
 dependencies {
     implementation project(":code:usersregistration.cmd:usersregistration-domain")
+    implementation project(":code:usersregistration.cmd:usersregistration-application")
+    implementation project(":cqrs-es:core")
+    implementation project(':code:usersregistration.common')
     testImplementation 'junit:junit:4.13.1'
     testImplementation project(path: ':code:usersregistration.cmd:usersregistration-boot')
 }

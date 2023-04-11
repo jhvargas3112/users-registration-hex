@@ -16,7 +16,7 @@ public class GetUserById implements GetUserByIdUseCase {
   }
 
   @Override
-  public Optional<User> execute(Long id) {
+  public Optional<User> execute(String id) {
     return getUserByIdRepository.execute(id);
   }
 

@@ -1,6 +1,7 @@
 dependencies {
     implementation project(":code:usersregistration.cmd:usersregistration-domain")
-    implementation project(":code:usersregistration.cmd:usersregistration-application")
-    implementation project(":code:usersregistration.cmd:usersregistration-infrastructure")
+    implementation project (":code:usersregistration.cmd:usersregistration-infrastructure")
     implementation project(":code:usersregistration.cmd:usersregistration-api:rest:api-rest-server")
+    implementation project(':code:usersregistration.common')
+    implementation project(":cqrs-es:core")
 }

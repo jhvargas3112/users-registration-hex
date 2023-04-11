@@ -1,7 +1,7 @@
 package com.company.signup.domain.model.user;
 
+import com.users.resgistration.common.validators.LegalAge;
 import java.time.LocalDate;
-import java.time.Period;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import lombok.Value;
@@ -25,10 +25,6 @@ public class BirthDate {
 
   public Integer getYear() {
     return date.getYear();
-  }
-
-  public Integer getAge() {
-    return Period.between(date, LocalDate.now()).getYears();
   }
 
 }

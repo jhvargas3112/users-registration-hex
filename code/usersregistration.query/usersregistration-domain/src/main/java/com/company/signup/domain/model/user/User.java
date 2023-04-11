@@ -1,13 +1,21 @@
 package com.company.signup.domain.model.user;
 
+import java.time.LocalDate;
+import java.time.Period;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Value
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Builder
 public class User {
 
-  Long id;
+  String id;
 
   @NotBlank
   @Size(min = 8)
@@ -20,21 +28,25 @@ public class User {
 
   BodyMeasurements bodyMeasurements;
 
-  public static User create(final Long id, final String userName, final String password,
+  public static User create(final String id, final String userName, final String password,
       final BirthDate birthDate, final BodyMeasurements bodyMeasurements) {
     return new User(id, userName, password, birthDate, bodyMeasurements);
   }
 
-  public Double calculateBmiValue() {
-    return this.bodyMeasurements.calculateBmi();
+  public Double calculateBmi() {
+    return bodyMeasurements.getWeight() / Math.pow(bodyMeasurements.getHeight(), 2.0);
   }
 
   public Double getHeight() {
-    return this.getBodyMeasurements().getHeight();
+    return bodyMeasurements.getHeight();
   }
 
   public Double getWeight() {
-    return this.getBodyMeasurements().getWeight();
+    return bodyMeasurements.getWeight();
+  }
+
+  public Integer getAge() {
+    return Period.between(birthDate.getDate(), LocalDate.now()).getYears();
   }
 
 }

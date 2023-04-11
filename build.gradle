@@ -9,20 +9,20 @@ allprojects {
     group = 'com.users'
     version = '0.0.1-SNAPSHOT'
     sourceCompatibility = '17'
-    
+
     apply plugin: 'java'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
     apply plugin: 'io.freefair.lombok'
 
     springBoot {
-        mainClass = 'com.users.signup.UsersRegistrationApplication'
+        mainClass = 'com.company.signup.CommandApplication'
     }
-    
+
     repositories {
         mavenCentral()
     }
-    
+
     dependencies {
         implementation 'org.springframework.boot:spring-boot-starter-web'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -40,8 +40,6 @@ allprojects {
         implementation group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.5.3.Final'
         annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.5.3.Final'
         implementation group: 'org.projectlombok', name: 'lombok-mapstruct-binding', version: '0.2.0'
-        testImplementation group: 'com.h2database', name: 'h2', version: '2.1.214'
-        implementation group: 'com.h2database', name: 'h2', version: '2.1.214'
         implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
         implementation 'org.apache.kafka:kafka-clients:3.4.0'
     }

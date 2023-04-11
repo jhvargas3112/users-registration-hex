@@ -6,6 +6,6 @@ import java.util.Optional;
 @FunctionalInterface
 public interface GetUserByIdUseCase {
 
-  Optional<User> execute(Long id);
+  Optional<User> execute(String id);
 
 }

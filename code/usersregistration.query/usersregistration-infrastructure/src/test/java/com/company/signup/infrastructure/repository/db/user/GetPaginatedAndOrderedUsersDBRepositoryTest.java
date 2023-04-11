@@ -12,6 +12,7 @@ import com.company.signup.infrastructure.repository.db.mapper.RepositoryUserMapp
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Page;
@@ -37,7 +38,7 @@ public class GetPaginatedAndOrderedUsersDBRepositoryTest {
 
   @Test
   public void given_size_and_page_and_sortby_params_then_return_paginated_users() {
-    var user = new User(1L, "pepelucho1", "123456", LocalDate.now(), 1.88, 78.0);
+    var user = new User(UUID.randomUUID().toString(), "pepelucho1", "123456", LocalDate.now(), 1.88, 78.0);
 
     var sortBy = "birthDate";
 

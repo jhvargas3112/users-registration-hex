@@ -1,5 +1,6 @@
 package com.company.signup.domain.model.user;
 
+import com.users.resgistration.common.validators.LegalAge;
 import java.time.LocalDate;
 import java.time.Period;
 import javax.validation.constraints.NotNull;
@@ -11,7 +12,7 @@ public class BirthDate {
 
   @NotNull
   @Past
-  @LegalAge(value = 18)
+  @LegalAge(18)
   LocalDate date;
 
   public static BirthDate create(LocalDate date) {

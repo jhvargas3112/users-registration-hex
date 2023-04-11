@@ -12,6 +12,7 @@ import com.company.signup.infrastructure.repository.db.mapper.RepositoryUserMapp
 import com.company.signup.infrastructure.repository.db.mapper.RepositoryUserMapperImpl;
 import java.time.LocalDate;
 import java.util.Optional;
+import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -33,7 +34,7 @@ public class GetUserByIdDBRepositoryTest {
 
   @Test
   public void given_user_id_then_return_user() {
-    var userId = 1L;
+    var userId = UUID.randomUUID().toString();
 
     var entityUser = new com.company.signup.infrastructure.repository.db.entity.User(any(),
         "pepelucho", "123456", LocalDate.now(), 1.88, 78.0);
