@@ -44,22 +44,3 @@ Wee need to be able to retrieve the statistics orderer by BMI
 
 # Details
 Our system will be used with different clients, CLI and REST.
-
-## CLI
-A terminal through CLI (Command Line Interface).
-It could be helpful having a `help` parameter.
-
-## REST
-a REST Client.
-It could be helpful having a Swagger documentation.
-
-# What we are looking for
-
-* Usage of Java 17 with Gradle
-* SpringBoot in infrastructure layer
-* Don't use any framework in the domain code, we want to see you code.
-* Pay attention about how your code is organized.
-* How you are reflecting the domain in the code.
-* We love clean code.
-* We don't think 100% of code coverage is a must, but we love tests.
-* We are looking forward to seeing your code and discuss with you your solution.
